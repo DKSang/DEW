@@ -1,9 +1,9 @@
 ---
-name: bmad-review-edge-case-hunter
+name: dew-review-edge-case-hunter
 description: 'Walk branching paths and boundary conditions in content, reporting only unhandled edge cases.'
 ---
 
-# Edge Case Hunter Review
+# DEW Edge Case Hunter Review
 
 **Goal:** Find unhandled edge cases by systematically walking branches and boundaries.
 
@@ -29,12 +29,11 @@ Walk:
 - loops
 - error paths
 - early returns
-- null/empty values
-- min/max boundaries
+- null or empty values
+- min or max boundaries
 - missing default cases
 - invalid types
-- timeout/retry gaps
-- concurrent/race conditions where applicable
+- timeout and retry gaps
 
 For DEW/data engineering artifacts, also walk:
 - missing source rows
@@ -44,8 +43,8 @@ For DEW/data engineering artifacts, also walk:
 - partial source refresh
 - freshness miss
 - grain mismatch
-- DQ false positive/negative
-- failed backfill/replay
+- DQ false positive or false negative
+- failed backfill or replay
 - serving user misinterpretation
 
 ### Step 3 — Validate Completeness
@@ -67,7 +66,7 @@ Return a JSON array of objects:
 ]
 ```
 
-An empty array `[]` is valid only after exhaustive review.
+An empty array is valid only after exhaustive review.
 
 ## HALT Conditions
 

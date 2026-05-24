@@ -1,11 +1,11 @@
 ---
-name: bmad-customize
-description: 'Authors and updates customization overrides for installed BMad/DEW skills.'
+name: dew-customize
+description: 'Authors and updates customization overrides for installed DEW skills.'
 ---
 
-# BMad Customize
+# DEW Customize
 
-**Goal:** Translate user intent into correctly placed TOML override files under `{project-root}/_bmad/custom/`.
+**Goal:** Translate user intent into correctly placed TOML override files under `{project-root}/_dew/custom/`.
 
 ## Scope
 
@@ -15,12 +15,10 @@ This skill supports:
 - sparse TOML override files
 - team overrides and user overrides
 
-Central config customization is out of scope unless explicitly supported by the installed runtime.
-
 ## Preflight
 
-- If `{project-root}/_bmad/` does not exist, say BMad/DEW is not installed and stop.
-- If `{project-root}/_bmad/scripts/resolve_customization.py` exists, use it for verification.
+- If `{project-root}/_dew/` does not exist, say DEW is not installed and stop.
+- If `{project-root}/_dew/scripts/resolve_customization.py` exists, use it for verification.
 - If resolver is missing, continue with manual merge explanation.
 
 ## Execution
@@ -78,12 +76,8 @@ Confirm placement before writing.
 1. Show full TOML.
 2. If file exists, show diff.
 3. Wait for explicit approval.
-4. Write file under `{project-root}/_bmad/custom/`.
-5. Verify using resolver if available:
-
-```bash
-python3 {project-root}/_bmad/scripts/resolve_customization.py --skill <install-path> --key <agent-or-workflow>
-```
+4. Write file under `{project-root}/_dew/custom/`.
+5. Verify using resolver if available.
 
 If resolver is unavailable, manually explain base → team → user merge.
 
@@ -99,5 +93,3 @@ Complete only when:
 - requested field is not exposed in `customize.toml`
 - user wants to change hidden step logic directly
 - skill has no `customize.toml`
-
-In these cases, explain limitation and suggest creating a custom skill or extending the source skill.

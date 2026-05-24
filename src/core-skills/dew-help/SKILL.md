@@ -1,32 +1,31 @@
 ---
-name: bmad-help
-description: 'Analyzes current state and user query to answer BMad/DEW questions or recommend the next skill(s) to use.'
+name: dew-help
+description: 'Analyzes current DEW state and user query to recommend the next skill(s) or answer workflow questions.'
 ---
 
-# BMad Help
+# DEW Help
 
 ## Purpose
 
-Help the user understand where they are in the installed workflow and what to do next.
+Help the user understand where they are in the DEW workflow and what to do next.
 
 ## Desired Outcomes
 
 When this skill completes, the user should:
 
 1. Know where they are — which module and phase they are in, and what has already been completed.
-2. Know what to do next — the next recommended and/or required step, with clear reasoning.
+2. Know what to do next — the next recommended and/or required DEW step, with clear reasoning.
 3. Know how to invoke it — skill name, menu code, and args when available.
-4. Get offered a quick start when a single next skill is clear.
-5. Feel oriented, not overwhelmed.
-6. Get grounded answers to general module questions using registered module docs.
+4. Feel oriented, not overwhelmed.
+5. Get grounded answers to general DEW questions using the installed module catalog and docs.
 
 ## Data Sources
 
-- Catalog: `{project-root}/_bmad/_config/bmad-help.csv` — assembled manifest of all installed module skills.
-- Config: `config.yaml` and `user-config.yaml` files in `{project-root}/_bmad/` and subfolders.
+- Catalog: `{project-root}/_dew/_config/dew-help.csv` — assembled manifest of installed DEW skills.
+- Config: `{project-root}/_dew/config.yaml` and user overrides when present.
 - Artifacts: Files matching `outputs` patterns at resolved `output-location` paths.
 - Project knowledge: If `project_knowledge` resolves to an existing path, read it for grounding context.
-- Module docs: Rows with `_meta` in the `skill` column may point to documentation such as `llms.txt`.
+- Module docs: `_meta` rows in module catalogs may point to documentation.
 
 ## CSV Interpretation
 
@@ -51,7 +50,7 @@ Required gates:
 Completion detection:
 - Search resolved output paths for `outputs` patterns.
 - Fuzzy-match found files to catalog rows.
-- Accept explicit user statements when grounded in context.
+- Accept explicit user statements only when grounded in context.
 
 ## Response Format
 
@@ -69,5 +68,4 @@ Show optional items first, then the next required item. Keep the response focuse
 
 - Present output in `{communication_language}` when available.
 - Recommend running each skill in a fresh context window.
-- Match the user's tone.
 - Never fabricate project-specific status.

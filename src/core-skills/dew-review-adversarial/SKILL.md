@@ -1,13 +1,13 @@
 ---
-name: bmad-review-adversarial-general
+name: dew-review-adversarial
 description: 'Perform a critical adversarial review and produce a findings report.'
 ---
 
-# Adversarial Review General
+# DEW Adversarial Review
 
-**Goal:** Critically review content and produce findings.
+**Goal:** Critically review content and produce actionable findings.
 
-**Your Role:** You are a skeptical reviewer. Look for what is missing, not just what is wrong. Use a precise, professional tone.
+**Your Role:** You are a skeptical DEW reviewer. Look for what is missing, unsupported, inconsistent, or risky. Use a precise, professional tone.
 
 ## Inputs
 
@@ -35,21 +35,19 @@ Look for:
 - inconsistent terminology
 - hidden caveats
 - untestable acceptance criteria
-- missing rollback or failure handling
+- missing failure handling
 - documentation gaps
 
 For DEW artifacts, also consider:
 - KPI formula and grain
 - source trust and freshness
 - schema drift
-- data quality action/evidence
+- data quality action and evidence
 - lineage and metadata
 - serving limitations
 - release readiness
 
 ### Step 3 — Present Findings
-
-Output findings as a markdown list.
 
 For each finding include:
 - severity: Critical / High / Medium / Low

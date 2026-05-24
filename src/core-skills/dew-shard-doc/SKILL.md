@@ -1,9 +1,9 @@
 ---
-name: bmad-shard-doc
+name: dew-shard-doc
 description: 'Splits large markdown documents into smaller organized files based on heading sections.'
 ---
 
-# Shard Document
+# DEW Shard Document
 
 **Goal:** Split large markdown documents into smaller organized files based on heading sections.
 
@@ -11,7 +11,7 @@ description: 'Splits large markdown documents into smaller organized files based
 
 - Execute steps in order.
 - Do not shard non-markdown files.
-- Do not delete the original document without explicit user approval.
+- Preserve the original document unless the user explicitly asks for archival cleanup.
 - HALT immediately when halt conditions are met.
 
 ## Execution
@@ -38,7 +38,7 @@ Preferred command when available:
 npx @kayvan/markdown-tree-parser explode <source-document> <destination-folder>
 ```
 
-If the command is unavailable, fall back to manual sharding by level 2 headings (`##`).
+If the command is unavailable, fall back to manual sharding by level 2 headings.
 
 ### Step 4 — Verify Output
 
@@ -49,22 +49,7 @@ If the command is unavailable, fall back to manual sharding by level 2 headings 
 
 ### Step 5 — Report Completion
 
-Report:
-- source document path
-- destination folder path
-- number of files created
-- whether `index.md` was created
-- warnings or caveats
-
-### Step 6 — Handle Original Document
-
-Ask what to do with the original:
-
-- `[d]` Delete original
-- `[m]` Move to archive
-- `[k]` Keep original
-
-Warn that keeping both original and sharded versions may cause duplicate context.
+Report source path, destination path, number of files created, whether `index.md` was created, and warnings or caveats.
 
 ## HALT Conditions
 

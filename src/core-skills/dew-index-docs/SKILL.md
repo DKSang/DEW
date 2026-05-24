@@ -1,9 +1,9 @@
 ---
-name: bmad-index-docs
+name: dew-index-docs
 description: 'Generates or updates an index.md to reference all docs in a target folder.'
 ---
 
-# Index Docs
+# DEW Index Docs
 
 **Goal:** Generate or update an `index.md` to reference all docs in a target folder.
 
