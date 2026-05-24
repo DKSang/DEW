@@ -257,3 +257,66 @@ Resume when:
 - `.learning-log.md` is updated
 - reusable pattern is extracted if applicable
 - unresolved lessons are recorded
+
+---
+
+## HALT-20 — Release Not Ready
+
+Triggered when E2E validation fails or critical release readiness items are missing.
+
+Type: Hard Halt
+
+Resume when:
+- E2E validation passes
+- critical evidence gaps are filled
+- user approves release with caveats
+
+---
+
+## HALT-21 — Documentation Incomplete
+
+Triggered when required documentation (user-facing or technical) is missing before final closure.
+
+Type: Soft Halt
+
+Resume when:
+- README, Data Dictionary, or Runbook is completed
+- or user accepts documentation gaps
+
+---
+
+## HALT-22 — Skill Pack QA Failed
+
+Triggered when the DEW skill pack itself fails structural or logical consistency checks.
+
+Type: Hard Halt
+
+Resume when:
+- missing files are created
+- broken links are fixed
+- inconsistencies are resolved
+
+---
+
+## HALT-23 — Package Release Not Ready
+
+Triggered when packaging scope, version, or release notes are missing.
+
+Type: Hard Halt
+
+Resume when:
+- version is selected
+- release notes are drafted
+- user approves package release
+
+---
+
+## HALT-24 — Installation Documentation Incomplete
+
+Triggered when onboarding guides, command references, or troubleshooting steps are missing.
+
+Type: Soft Halt
+
+Resume when:
+- installation guide is completed
+- verification steps are included

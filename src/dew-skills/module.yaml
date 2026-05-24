@@ -1,5 +1,6 @@
 code: dew
 name: "Data Engineering Workflow"
+version: "1.0.0"
 description: "Evidence-driven data engineering workflow based on Fundamentals of Data Engineering and BMAD-style phased skills."
 default_selected: true
 

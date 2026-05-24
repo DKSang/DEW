@@ -1,8 +1,8 @@
 module,skill,display-name,menu-code,description,action,args,phase,preceded-by,followed-by,required,output-location,outputs
 DEW,_meta,,,,,,,,,false,,
-DEW,dew-decision-gate,Decision Gate,DG,Run a mandatory project-shaping decision gate with evidence options trade-offs and user approval.,,,anytime,,,true,planning_artifacts,decision gate result
-DEW,dew-halt-resolver,Halt Resolver,HR,Resolve a DEW HALT by explaining risk options evidence requirements and resume conditions.,,,anytime,,,true,planning_artifacts,halt resolution
-DEW,dew-evidence-check,Evidence Check,EC,Check whether a phase has required validation evidence before it can be marked done.,,,anytime,,,true,evidence_artifacts,evidence check report
+DEW,dew-decision-gate,Decision Gate,DG,Run a mandatory project-shaping decision gate with evidence options trade-offs and user approval.,,,1-analysis,,,true,planning_artifacts,decision gate result
+DEW,dew-halt-resolver,Halt Resolver,HR,Resolve a DEW HALT by explaining risk options evidence requirements and resume conditions.,,,1-analysis,,,true,planning_artifacts,halt resolution
+DEW,dew-evidence-check,Evidence Check,EC,Check whether a phase has required validation evidence before it can be marked done.,,,1-analysis,,,true,evidence_artifacts,evidence check report
 DEW,dew-project-brief,Project Brief,PB,Create update or validate a DEW project brief focused on data engineering scope business purpose and learning objective.,,,1-analysis,,,true,planning_artifacts,project brief
 DEW,dew-business-discovery,Business Discovery,BD,Clarify business decision data consumers stakeholders and decision context before KPI/source work.,,,1-analysis,dew-project-brief,dew-kpi-discovery,true,planning_artifacts,business discovery
 DEW,dew-kpi-discovery,KPI Discovery,KD,Define candidate KPIs formulas grains required fields and source dependencies without claiming feasibility.,,,1-analysis,dew-business-discovery,dew-data-product-prd,true,planning_artifacts,kpi catalog
