@@ -2,13 +2,12 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "dew-method",
   "version": "1.0.0",
-  "description": "Data Engineering Workflow skills packaged as a BMAD-style installable module",
+  "description": "Data Engineering Workflow skills packaged as a DEW-native installable module",
   "keywords": [
     "data-engineering",
     "workflow",
     "agents",
     "skills",
-    "bmad",
     "dew"
   ],
   "repository": {
