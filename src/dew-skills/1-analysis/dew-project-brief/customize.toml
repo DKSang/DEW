@@ -8,6 +8,7 @@ activation_steps_prepend = []
 activation_steps_append = []
 
 persistent_facts = [
+  "file:{project-root}/_dew/guided-interview-policy.md",
   "file:{project-root}/**/project-context.md",
   "file:{project-root}/**/.decision-log.md",
   "file:{project-root}/**/.learning-log.md",
@@ -17,6 +18,7 @@ on_complete = ""
 
 brief_template = "assets/project-brief-template.md"
 validation_rubric = "assets/project-brief-validation-rubric.md"
+guided_interview_policy = "../../shared/guided-interview-policy.md"
 checklist = "checklist.md"
 
 brief_output_path = "{planning_artifacts}/project-briefs"
