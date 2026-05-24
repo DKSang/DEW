@@ -23,7 +23,10 @@ You may recommend, but you must not decide.
 
 - Do not write a final brief before project scope is clear.
 - Do not treat KPI/source assumptions as facts.
-- If the project has no clear consumer or decision, trigger `HALT-01 — Business Decision Unclear`.
+- Do not ask a long questionnaire when guided interview mode is enabled.
+- Ask one primary question at a time when `guided_interview_mode=true` or `question_batch_size=1`.
+- Every question must include short context, examples/options, and permission to answer `chưa rõ` / `not sure`.
+- If the project has no clear consumer or decision, do guided discovery first; trigger `HALT-01 — Business Decision Unclear` only if the user asks to finalize or proceed past the required gate anyway.
 - Record project-shaping decisions in `.decision-log.md`.
 - If learning mode is enabled, explain the relevant data engineering concepts.
 
@@ -39,7 +42,7 @@ You may recommend, but you must not decide.
 
 3. Load persistent facts from `{workflow.persistent_facts}`.
 
-4. Load `{project-root}/_dew/dew/config.yaml` if present and resolve:
+4. Load `{project-root}/_dew/config.yaml` if present and resolve:
    - `{user_name}`
    - `{project_name}`
    - `{communication_language}`
@@ -47,10 +50,14 @@ You may recommend, but you must not decide.
    - `{planning_artifacts}`
    - `{learning_artifacts}`
    - `{learning_mode}`
+   - `{guided_interview_mode}`
+   - `{question_batch_size}`
+   - `{beginner_prompt_style}`
 
 5. Load:
    - `{workflow.brief_template}`
    - `{workflow.validation_rubric}`
+   - `{workflow.guided_interview_policy}` if present
 
 6. Greet user in `{communication_language}`.
 
@@ -85,11 +92,99 @@ Critique an existing project brief against the validation rubric.
 
 Do not modify the brief unless the user asks.
 
-## Discovery
+## Guided Discovery
 
-Start with a broad project dump.
+When creating a brief, do not start with a broad project dump unless the user explicitly asks for expert mode.
 
-Ask for:
+Start with the minimum viable sequence below. Ask exactly one question at a time in guided mode.
+
+### Question 1 — Project idea
+
+Ask:
+
+What data engineering project do you want to build?
+
+Explain that this can be rough. Provide examples:
+
+A. Weather/agriculture advisory data product
+B. Sales KPI dashboard pipeline
+C. Public API to Bronze/Silver/Gold demo
+D. Data quality monitoring project
+E. Not sure yet
+
+After the user answers, summarize the answer in one sentence and continue.
+
+### Question 2 — Target user / consumer
+
+Ask who will use the data product.
+
+Options:
+
+A. Data analyst
+B. Business/internal decision-maker
+C. Farmer/end user/customer
+D. Data engineer/learning portfolio reviewer
+E. Not sure yet
+
+If unclear, help narrow it before continuing.
+
+### Question 3 — Decision or question supported
+
+Ask what decision, action, or question the data product should support.
+
+Options:
+
+A. Monitor performance
+B. Detect risk/anomaly
+C. Compare regions/products/time periods
+D. Recommend an action
+E. Learn/portfolio only for now
+F. Not sure yet
+
+Do not finalize the brief if this remains unclear.
+
+### Question 4 — Data product type
+
+Ask what the expected output is.
+
+Options:
+
+A. Dashboard
+B. Gold data mart
+C. API
+D. Report/notebook
+E. Web app feature
+F. ML/feature table
+G. Not sure yet
+
+Recommend a simple option when the user is a beginner.
+
+### Question 5 — Project type gate
+
+Ask the user to choose:
+
+A. Learning / exploration
+B. Portfolio project
+C. Internal decision-support
+D. Production-grade
+
+Explain the trade-off briefly. Do not continue until the user chooses or asks for guidance.
+
+### Optional Follow-up Questions
+
+After the five required questions, ask follow-ups one at a time only when needed:
+
+- domain
+- known sources
+- known KPIs
+- constraints
+- intended platform/tools
+- learning objectives
+
+## Expert Discovery
+
+If `question_batch_size=all` or the user asks for expert mode, it is acceptable to ask for:
+
 - project idea
 - target user
 - business or learning goal
@@ -98,16 +193,8 @@ Ask for:
 - known sources
 - known KPIs
 - constraints
-- intended platform/tools, if any
-
-Then classify the project:
-
-A. Learning / exploration  
-B. Portfolio project  
-C. Internal decision-support  
-D. Production-grade  
-
-This is a decision gate. Do not continue until the user chooses.
+- intended platform/tools
+- project type
 
 ## Required Brief Sections
 
@@ -126,6 +213,21 @@ The brief must include:
 - assumptions
 - evidence required before architecture
 - next workflow recommendation
+
+## Draft Behavior
+
+If required information is incomplete, create `brief.md` with `status: draft`, not final.
+
+Use frontmatter like:
+
+```yaml
+status: draft
+gate:
+  GATE-00-project-scope: pending
+missing:
+  - target user
+  - business decision
+```
 
 ## Finalize
 
