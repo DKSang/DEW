@@ -99,6 +99,9 @@ function writeConfig(targetRoot, answers) {
     `evidence_artifacts: "${answers.outputFolder}/evidence-artifacts"`,
     `learning_artifacts: "${answers.outputFolder}/learning-artifacts"`,
     'project_knowledge: "docs"',
+    'guided_interview_mode: "true"',
+    'question_batch_size: "1"',
+    'beginner_prompt_style: "true"',
     '',
   ].join('\n');
 
@@ -126,6 +129,31 @@ function createRuntimeDirs(targetRoot, outputFolder) {
   }
 
   return dirs;
+}
+
+function installRuntimeScripts(packageRoot, targetRoot) {
+  const runtimeScriptsRoot = path.join(packageRoot, 'tools', 'runtime', 'scripts');
+  const targetScriptsRoot = path.join(targetRoot, '_dew', 'scripts');
+
+  if (fs.existsSync(runtimeScriptsRoot)) {
+    copyDirectory(runtimeScriptsRoot, targetScriptsRoot);
+  }
+
+  return fs.existsSync(targetScriptsRoot)
+    ? fs.readdirSync(targetScriptsRoot).filter((file) => fs.statSync(path.join(targetScriptsRoot, file)).isFile()).length
+    : 0;
+}
+
+function installGuidedInterviewPolicy(sourceRoot, targetRoot) {
+  const sourcePolicy = path.join(sourceRoot, 'dew-skills', 'shared', 'guided-interview-policy.md');
+  const targetPolicy = path.join(targetRoot, '_dew', 'guided-interview-policy.md');
+
+  if (fs.existsSync(sourcePolicy)) {
+    fs.copyFileSync(sourcePolicy, targetPolicy);
+    return true;
+  }
+
+  return false;
 }
 
 function printBanner() {
@@ -224,12 +252,16 @@ async function installDew(options = {}) {
 
   const helpRows = buildHelpCatalog(sourceRoot, path.join(targetRoot, '_dew', '_config', 'dew-help.csv'));
   writeConfig(targetRoot, answers);
+  const runtimeScriptCount = installRuntimeScripts(packageRoot, targetRoot);
+  const hasGuidedPolicy = installGuidedInterviewPolicy(sourceRoot, targetRoot);
   const skillCount = copyAgentSkills(sourceRoot, path.join(targetRoot, '.agents', 'skills'));
 
   console.log('');
   console.log(pc.green('DEW is ready to use!'));
   console.log(`  ✓ Runtime: _dew`);
   console.log(`  ✓ Output folder: ${answers.outputFolder}`);
+  console.log(`  ✓ Runtime scripts: ${runtimeScriptCount} script(s) → _dew/scripts`);
+  console.log(`  ✓ Guided interview policy: ${hasGuidedPolicy ? 'installed' : 'not found'}`);
   console.log(`  ✓ Agent skills: ${skillCount} skills → .agents/skills`);
   console.log(`  ✓ Help catalog: ${helpRows} rows → _dew/_config/dew-help.csv`);
   console.log('');
@@ -243,4 +275,4 @@ async function installDew(options = {}) {
   console.log('  2. Invoke the dew-help skill and ask what to do next.');
 }
 
-module.exports = { installDew, copyDirectory, buildHelpCatalog, copyAgentSkills };
+module.exports = { installDew, copyDirectory, buildHelpCatalog, copyAgentSkills, installRuntimeScripts };
