@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "dew-method",
+  "version": "0.1.0",
+  "description": "Data Engineering Workflow skills packaged as a BMAD-style installable module",
+  "keywords": [
+    "data-engineering",
+    "workflow",
+    "agents",
+    "skills",
+    "bmad",
+    "dew"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DKSang/DEW.git"
+  },
+  "license": "MIT",
+  "author": "Duong Kim Sang",
+  "main": "tools/installer/dew-cli.js",
+  "bin": {
+    "dew": "tools/installer/dew-cli.js",
+    "dew-method": "tools/installer/dew-cli.js"
+  },
+  "scripts": {
+    "dew:install": "node tools/installer/dew-cli.js install",
+    "install:dew": "node tools/installer/dew-cli.js install",
+    "list": "node tools/installer/dew-cli.js list",
+    "validate:package": "node tools/installer/dew-cli.js validate",
+    "pack:dry-run": "npm pack --dry-run"
+  },
+  "dependencies": {
+    "commander": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
