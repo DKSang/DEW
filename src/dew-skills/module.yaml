@@ -114,3 +114,5 @@ agents:
     icon: "📚"
     team: data-engineering
     description: "Creates clear documentation, diagrams, learning notes, and reusable patterns."
+requires:
+  - core
