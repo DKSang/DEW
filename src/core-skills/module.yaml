@@ -1,23 +1,24 @@
 code: core
-name: "BMad Core Module"
-description: "Shared utilities across DEW and other installed modules"
+name: "DEW Core Module"
+version: "0.1.0"
+description: "Shared DEW utilities and configuration used across installed DEW modules."
 
-header: "BMad Core Configuration"
-subheader: "Configure shared settings for DEW, core skills, workflows, and agents."
+header: "DEW Core Configuration"
+subheader: "Configure shared settings for DEW skills, workflows, and agents."
 
 user_name:
-  prompt: "What should agents call you? (Use your name or a team name)"
+  prompt: "What should DEW agents call you?"
   scope: user
-  default: "BMad"
+  default: "DEW User"
   result: "{value}"
 
 project_name:
-  prompt: "What is your project called?"
+  prompt: "What is your data project called?"
   default: "{directory_name}"
   result: "{value}"
 
 communication_language:
-  prompt: "What language should agents use when chatting with you?"
+  prompt: "What language should DEW agents use when chatting with you?"
   scope: user
   default: "English"
   result: "{value}"
@@ -28,6 +29,6 @@ document_output_language:
   result: "{value}"
 
 output_folder:
-  prompt: "Where should output files be saved?"
-  default: "_bmad-output"
+  prompt: "Where should DEW output files be saved?"
+  default: "_dew-output"
   result: "{project-root}/{value}"
