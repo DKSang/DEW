@@ -14,12 +14,12 @@ const REQUIRED_FILES = [
 ];
 
 const REQUIRED_CORE_SKILLS = [
-  'bmad-help',
-  'bmad-index-docs',
-  'bmad-shard-doc',
-  'bmad-review-adversarial-general',
-  'bmad-review-edge-case-hunter',
-  'bmad-customize',
+  'dew-help',
+  'dew-index-docs',
+  'dew-shard-doc',
+  'dew-review-adversarial',
+  'dew-review-edge-case-hunter',
+  'dew-customize',
 ];
 
 function validatePackage() {
@@ -36,7 +36,20 @@ function validatePackage() {
   for (const skill of REQUIRED_CORE_SKILLS) {
     const skillPath = path.join(packageRoot, 'src/core-skills', skill, 'SKILL.md');
     if (!fs.existsSync(skillPath)) {
-      findings.push(`Missing core skill: ${skill}`);
+      findings.push(`Missing DEW core skill: ${skill}`);
+    }
+  }
+
+  const coreCatalogPath = path.join(packageRoot, 'src/core-skills/module-help.csv');
+  if (fs.existsSync(coreCatalogPath)) {
+    const coreCatalog = fs.readFileSync(coreCatalogPath, 'utf8');
+    for (const skill of REQUIRED_CORE_SKILLS) {
+      if (!coreCatalog.includes(skill)) {
+        findings.push(`Core catalog does not include ${skill}`);
+      }
+    }
+    if (coreCatalog.includes('bmad-') || coreCatalog.includes('_bmad')) {
+      findings.push('Core catalog still contains BMAD-branded identifiers.');
     }
   }
 
@@ -44,7 +57,7 @@ function validatePackage() {
   if (fs.existsSync(dewModulePath)) {
     const dewModule = fs.readFileSync(dewModulePath, 'utf8');
     if (!dewModule.includes('requires:') || !dewModule.includes('- core')) {
-      findings.push('DEW module does not clearly declare `requires: - core` near the module metadata.');
+      findings.push('DEW module does not declare `requires: - core`.');
     }
   }
 
