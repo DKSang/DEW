@@ -1,0 +1,28 @@
+# Development and local artifacts
+.git/
+.github/
+.vscode/
+.husky/
+coverage/
+test-output/
+node_modules/
+
+# Generated DEW project outputs
+_dew/
+
+# Local environment files
+.env
+.env.*
+*.log
+
+# Repository docs not needed at runtime
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+
+# Keep runtime package files:
+# - package.json
+# - README.md
+# - src/core-skills
+# - src/dew-skills
+# - tools/installer
