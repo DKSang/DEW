@@ -35,6 +35,35 @@ learning_mode:
   default: "true"
   result: "{value}"
 
+guided_interview_mode:
+  prompt:
+    - "Should DEW ask questions one at a time with examples and suggestions?"
+    - "Recommended for beginners and for early planning skills."
+  scope: user
+  default: "true"
+  result: "{value}"
+
+question_batch_size:
+  prompt:
+    - "How many questions should DEW ask at once during discovery?"
+  scope: user
+  default: "1"
+  result: "{value}"
+  single-select:
+    - value: "1"
+      label: "One question at a time - beginner friendly"
+    - value: "3"
+      label: "Small batch - faster but still guided"
+    - value: "all"
+      label: "Full checklist - expert mode"
+
+beginner_prompt_style:
+  prompt:
+    - "Should DEW include examples, choices, and a recommended option when asking questions?"
+  scope: user
+  default: "true"
+  result: "{value}"
+
 planning_artifacts:
   prompt: "Where should planning artifacts be stored?"
   default: "{output_folder}/planning-artifacts"
